@@ -14,10 +14,10 @@ abstract class Controller extends BaseController
     protected function successResponse($data, $message = null, $code = 200): JsonResponse
     {
         $response = [
-            'status' => 'Success',
+            'success' => true,
             'message' => $message,
         ];
-    
+
         if (isset($data['items']) && isset($data['pagination'])) {
             $response['data'] = $data['items'];
             $response['pagination'] = $data['pagination'];
@@ -31,7 +31,7 @@ abstract class Controller extends BaseController
     protected function errorResponse($message, $code): JsonResponse
     {
         return response()->json([
-            'status' => 'Error',
+            'success' => false,
             'message' => $message,
             'data' => null
         ], $code);
